@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.Controller">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <AnchorPane layoutX="-11.0" layoutY="2.0" prefHeight="400.0" prefWidth="240.0" style="-fx-background-color: green;">
+               <children>
+                  <Label layoutX="33.0" layoutY="226.0" text="Pharmacy Management System">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="WHITE" glyphName="STETHOSCOPE" layoutX="63.0" layoutY="186.0" size="12EM" text="" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="229.0" prefHeight="404.0" prefWidth="374.0">
+               <children>
+                  <TextField layoutX="77.0" layoutY="179.0" prefHeight="30.0" prefWidth="220.0" promptText="User Name" style="-fx-border-color: gray; -fx-border-radius: 2px; -fx-border-width: 2px; -fx-font-size: 13px; -fx-font-family: Arial;">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField layoutX="77.0" layoutY="246.0" prefHeight="30.0" prefWidth="220.0" promptText="Password" style="-fx-border-color: gray; -fx-border-radius: 2px; -fx-border-width: 2px; -fx-font-size: 13px; -fx-font-family: Arial;">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </PasswordField>
+                  <Button layoutX="130.0" layoutY="292.0" mnemonicParsing="false" onAction="#onLoginButtonClicked" prefHeight="40.0" prefWidth="110.0" text="Login" />
+                  <Button layoutX="316.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="43.0" style="-fx-background-color: #ff1201;" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
+                  <Label layoutX="99.0" layoutY="129.0" text=" WELCOME, PHARMACIST!" textFill="#ff1201" />
+                  <FontAwesomeIconView glyphName="USER_MD" layoutX="145.0" layoutY="105.0" size="6em" />
+                  <FontAwesomeIconView fill="#279444" glyphName="CLOSE" layoutX="346.0" layoutY="18.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

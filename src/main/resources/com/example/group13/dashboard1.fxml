@@ -31,11 +31,6 @@
                                     <Font name="Tahoma" size="14.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="-4.0" layoutY="8.0">
-                                 <image>
-                                    <Image url="@../../../../../../../../Downloads/Sthescope_icon-removebg-preview.png" />
-                                 </image>
-                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>
@@ -61,26 +56,6 @@
                               <Button layoutX="12.0" layoutY="239.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: TRANSPARENT;" text="Add Medicines" textFill="WHITE" />
                               <Button layoutX="21.0" layoutY="280.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: TRANSPARENT;" text="Purchase Medicine" textFill="WHITE" />
                               <Button layoutX="9.0" layoutY="514.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="22.0" style="-fx-background-color: TRANSPARENT;" />
-                              <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="39.0" layoutY="199.0">
-                                 <image>
-                                    <Image url="@../../../../../../../../Downloads/DASH-removebg-preview.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="39.0" layoutY="245.0">
-                                 <image>
-                                    <Image url="@../../../../../../../../Downloads/adddd-removebg-preview.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="39.0" layoutY="286.0">
-                                 <image>
-                                    <Image url="@../../../../../../../../Downloads/Sika-removebg-preview.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="63.0" layoutY="20.0">
-                                 <image>
-                                    <Image url="@../../../../../../../../Downloads/user-removebg-preview.png" />
-                                 </image>
-                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>
@@ -123,11 +98,6 @@
                               <ComboBox fx:id="addMedicines_status" layoutX="381.0" layoutY="22.0" prefWidth="150.0" promptText="Choose" style="-fx-background-color: #efefef; -fx-background-radius: 4px; -fx-border-color: ff0000; -fx-border-width: 2px;" />
                               <AnchorPane layoutX="543.0" layoutY="36.0" prefHeight="153.0" prefWidth="121.0">
                                  <children>
-                                    <ImageView fx:id="addMedicines_ImageView" fitHeight="153.0" fitWidth="121.0" layoutY="2.0">
-                                       <image>
-                                          <Image url="@../../../../../../../../Downloads/Doctor-removebg-preview.png" />
-                                       </image>
-                                    </ImageView>
                                  </children></AnchorPane>
                               <Button fx:id="addMedicines_importBtn" alignment="CENTER" layoutX="569.0" layoutY="203.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: TRANSPARENT; -fx-background-color: #449d6b; -fx-background-radius: 8px; -fx-text-fill: #ffffff; -fx-font-family: Arial; -fx-font-size: 14px;" text="Import" />
                               <Button fx:id="addMedicines_addBtn" layoutX="669.0" layoutY="103.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent; -fx-background-color: #449d6b; -fx-background-radius: 8px; -fx-text-fill: #ffffff; -fx-font-family: Arial; -fx-font-size: 14px;" text="Add" />

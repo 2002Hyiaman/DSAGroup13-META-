@@ -1,19 +1,35 @@
 package com.example.group13;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class HelloController {
+
     @FXML
-    private Label welcomeText;
+    private Button loginBtn;
+
+    @FXML
+    private AnchorPane main_form;
+
+    @FXML
+    private PasswordField password_input;
+
+    @FXML
+    private TextField username_input;
 
     //Database Credentials
     String url = "jdbc:mysql://localhost:3306/pharmacy";
+    @FXML
     String username = "root";
+    @FXML
     String password = "mysqlpearlkorkor@19";
     private Connection connection;
 

@@ -1,12 +1,19 @@
 package com.example.group13;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -25,21 +32,19 @@ public class HelloController {
     @FXML
     private TextField username_input;
 
-    //Database Credentials
-    String url = "jdbc:mysql://localhost:3306/pharmacy";
-    @FXML
-    String username = "root";
-    @FXML
-    String password = "mysqlpearlkorkor@19";
-    private Connection connection;
+    public void login(ActionEvent event) throws IOException {
+        if(event.getSource() == loginBtn) {
+            //Linking the dashboard
+            Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
 
-    //Method to connect to the database
-    public void connectToDatabase(String url, String username, String password) {
-        try {
-            connection = DriverManager.getConnection(url, username, password);
-            System.out.println("Database Connected Successfully");
-        } catch (SQLException error) {
-            System.out.println(error);
+            stage.initStyle(StageStyle.TRANSPARENT);
+
+            stage.setScene(scene);
+            stage.show();
+
+            loginBtn.getScene().getWindow().hide(); // this hides the login window
         }
     }
 }

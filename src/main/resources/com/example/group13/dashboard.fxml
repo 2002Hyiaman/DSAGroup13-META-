@@ -61,7 +61,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard_form" layoutX="172.0" layoutY="75.0" prefHeight="549.0" prefWidth="865.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard_form" layoutX="172.0" layoutY="75.0" prefHeight="549.0" prefWidth="865.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="15.0" layoutY="6.0" prefHeight="324.0" prefWidth="848.0">
                                  <children>
@@ -121,7 +121,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="add_medince_anchor" prefHeight="549.0" prefWidth="863.0" visible="false">
+                        <AnchorPane fx:id="add_medince_anchor" prefHeight="549.0" prefWidth="863.0">
                            <children>
                               <Label layoutX="87.0" layoutY="169.0" text="Price:">
                                  <font>
@@ -129,8 +129,8 @@
                                  </font>
                               </Label>
                               <TextField fx:id="addMedicines_price" layoutX="124.0" layoutY="164.0" prefHeight="25.0" prefWidth="117.0" promptText="\$0.0" style="-fx-background-color: #efefef; -fx-background-radius: 4px; -fx-border-color: ff0000; -fx-border-width: 2px;" />
-                              <Button fx:id="addMedicines_addBtn" layoutX="591.0" layoutY="98.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent; -fx-background-color: #449d6b; -fx-background-radius: 8px; -fx-text-fill: #ffffff; -fx-font-family: Arial; -fx-font-size: 14px;" text="Add" />
-                              <Button fx:id="addMedicines_deleteBtn" layoutX="591.0" layoutY="143.0" mnemonicParsing="false" style="-fx-background-color: TRANSPARENT; -fx-background-color: #449d6b; -fx-cursor: hands; -fx-text-fill: #ffffff; -fx-font-family: Arial; -fx-font-size: 14px;" text="Delete" />
+                              <Button fx:id="addMedicines_addBtn" layoutX="591.0" layoutY="98.0" mnemonicParsing="false" onAction="#addDrugs" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent; -fx-background-color: #449d6b; -fx-background-radius: 8px; -fx-text-fill: #ffffff; -fx-font-family: Arial; -fx-font-size: 14px;" text="Add" />
+                              <Button fx:id="addMedicines_deleteBtn" layoutX="591.0" layoutY="143.0" mnemonicParsing="false" onAction="#deleteDrug" style="-fx-background-color: TRANSPARENT; -fx-background-color: #449d6b; -fx-cursor: hands; -fx-text-fill: #ffffff; -fx-font-family: Arial; -fx-font-size: 14px;" text="Delete" />
                               <Label layoutX="29.0" layoutY="68.0" text="Brand Name:">
                                  <font>
                                     <Font name="Tahoma" size="14.0" />
@@ -146,12 +146,9 @@
                               <TableView fx:id="drug_table" layoutX="14.0" layoutY="247.0" prefHeight="200.0" prefWidth="841.0" style="-fx-background-color: transparent; -fx-padding: 0px; -fx-border-color: ff0000; -fx-border-width: 2px; -fx-background-radius: 6px; -fx-background-size: 40px;">
                                  <columns>
                                     <TableColumn fx:id="addMedicines_col_medicineID" prefWidth="120.0" text="Medicine ID" />
-                                    <TableColumn fx:id="addMedicines_col_brand" prefWidth="120.0" style="-fx-background-color: transparent;" text="Brand Name" />
-                                    <TableColumn fx:id="addMedicines_col_productName" prefWidth="120.0" style="-fx-background-color: transparent;" text="Product Name" />
-                                    <TableColumn fx:id="addMedicines_col_type" prefWidth="120.0" style="-fx-background-color: transparent;" text="Type" />
-                                    <TableColumn fx:id="addMedicines_col_price" prefWidth="120.0" style="-fx-background-color: transparent;" text="Price($)" />
-                                    <TableColumn fx:id="addMedicines_col_status" prefWidth="120.0" style="-fx-background-color: transparent;" text="Status" />
-                                    <TableColumn fx:id="addMedicines_col_date" prefWidth="120.0" style="-fx-background-color: transparent;" text="Date" />
+                                    <TableColumn fx:id="addMedicines_col_brand" prefWidth="260.0" style="-fx-background-color: transparent;" text="Brand Name" />
+                                    <TableColumn fx:id="addMedicines_col_productName" prefWidth="289.0" style="-fx-background-color: transparent;" text="Product Name" />
+                                    <TableColumn fx:id="addMedicines_col_price" prefWidth="170.0" style="-fx-background-color: transparent;" text="Price($)" />
                                  </columns>
                                  <effect>
                                     <Glow />

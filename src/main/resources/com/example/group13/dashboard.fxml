@@ -50,7 +50,7 @@
                               <Line endX="87.0" layoutX="111.0" layoutY="182.0" startX="-83.0" stroke="#f5f4f4" />
                               <Button fx:id="dashboard_btn" layoutX="5.0" layoutY="193.0" mnemonicParsing="false" onAction="#viewDashboard" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: TRANSPARENT;" text="Dashboard" textFill="WHITE" />
                               <Button fx:id="addMed_btn" layoutX="12.0" layoutY="239.0" mnemonicParsing="false" onAction="#viewAddMedicine" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: TRANSPARENT;" text="Add Medicines" textFill="WHITE" />
-                              <Button fx:id="purchase_btn" layoutX="21.0" layoutY="280.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: TRANSPARENT;" text="Purchase Medicine" textFill="WHITE" />
+                              <Button fx:id="purchase_btn" layoutX="21.0" layoutY="280.0" mnemonicParsing="false" onAction="#viewPurchaseMedicine" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: TRANSPARENT;" text="Purchase Medicine" textFill="WHITE" />
                               <Button layoutX="9.0" layoutY="514.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="22.0" style="-fx-background-color: TRANSPARENT;" />
                               <Button fx:id="logout" layoutX="13.0" layoutY="502.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: TRANSPARENT; -fx-background-color: #ff0000; -fx-text-fill: #ffffff; -fx-border-width: 2px; -fx-border-radius: 6px;" text="Logout" />
                            </children>
@@ -61,7 +61,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard_form" layoutX="172.0" layoutY="75.0" prefHeight="549.0" prefWidth="865.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard_form" layoutX="172.0" layoutY="75.0" prefHeight="549.0" prefWidth="865.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="15.0" layoutY="6.0" prefHeight="324.0" prefWidth="848.0">
                                  <children>
@@ -85,7 +85,7 @@
                                                 <Font name="Tahoma" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER_RIGHT" layoutX="117.0" layoutY="14.0" prefHeight="17.0" prefWidth="102.0" text="0" textFill="WHITE">
+                                          <Label fx:id="medicine_count" alignment="CENTER_RIGHT" layoutX="117.0" layoutY="14.0" prefHeight="17.0" prefWidth="102.0" text="0" textFill="WHITE">
                                                <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -98,7 +98,7 @@
                                                 <Font name="Tahoma" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER_RIGHT" layoutX="118.0" layoutY="19.0" prefHeight="17.0" prefWidth="102.0" text="\$0.0" textFill="WHITE">
+                                          <Label fx:id="total_income" alignment="CENTER_RIGHT" layoutX="118.0" layoutY="19.0" prefHeight="17.0" prefWidth="102.0" text="\$0.0" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -111,7 +111,7 @@
                                                 <Font name="Tahoma" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER_RIGHT" layoutX="116.0" layoutY="10.0" prefHeight="17.0" prefWidth="102.0" text="0" textFill="WHITE">
+                                          <Label fx:id="customer_count" alignment="CENTER_RIGHT" layoutX="116.0" layoutY="10.0" prefHeight="17.0" prefWidth="102.0" text="0" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -121,7 +121,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="add_medince_anchor" prefHeight="549.0" prefWidth="863.0">
+                        <AnchorPane fx:id="add_medince_anchor" prefHeight="549.0" prefWidth="863.0" visible="false">
                            <children>
                               <Label layoutX="87.0" layoutY="169.0" text="Price:">
                                  <font>
@@ -154,6 +154,20 @@
                                     <Glow />
                                  </effect>
                               </TableView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="purchase_medince_view" prefHeight="549.0" prefWidth="865.0" visible="false">
+                           <children>
+                              <TextField fx:id="purchase_medicine_name" layoutX="87.0" layoutY="101.0" promptText="Medcine Name" />
+                              <TextField fx:id="purchase_quantity" layoutX="87.0" layoutY="157.0" promptText="Quantity" />
+                              <TextField fx:id="purchase_total_amount" layoutX="87.0" layoutY="209.0" promptText="Total Amount" />
+                              <TextField fx:id="purchase_date" layoutX="284.0" layoutY="101.0" promptText="Date" />
+                              <Label alignment="CENTER" layoutX="236.0" layoutY="14.0" prefHeight="57.0" prefWidth="209.0" text="PURCHASE MEDICINE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="purchase_purhcase_btn" layoutX="374.0" layoutY="209.0" mnemonicParsing="false" onAction="#purchaseEvent" text="Purchase" />
                            </children>
                         </AnchorPane>
                      </children>

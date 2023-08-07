@@ -72,38 +72,64 @@ public class DashboardController {
     private AnchorPane dashboard_totalIncome;
 
     @FXML
-    private TableColumn<?, ?> date_col;
-
-    @FXML
     private Button logout;
-
-    @FXML
-    private TableColumn<DrugsTable, String> medicineName_col;
-
-    @FXML
-    private TableColumn<?, ?> purchaseID_col;
 
     @FXML
     private Button purchase_btn;
 
     @FXML
-    private TableView<?> purchase_tableview;
+    private TableView<PurchaseTable> purchase_tableview;
 
     @FXML
-    private TableColumn<?, ?> quantity_col;
+    private TableColumn<PurchaseTable, Integer> quantity_col;
 
     @FXML
-    private TableColumn<?, ?> totalAmount_col;
+    private TableColumn<PurchaseTable, Double> totalAmount_col;
+    @FXML
+    private TableColumn<PurchaseTable, Integer> purchaseID_col;
+    @FXML
+    private TableColumn<PurchaseTable, String> date_col;
+    @FXML
+    private TableColumn<PurchaseTable, String> medicineName_col;
+
 
     @FXML
     private Label username;
+
+    @FXML
+    private Label medicine_count;
+
+    @FXML
+    private Label total_income;
+
+    @FXML
+    private Label customer_count;
+
+    @FXML
+    private AnchorPane purchase_medince_view;
+
+    @FXML
+    private TextField purchase_medicine_name;
+    @FXML
+    private TextField purchase_quantity;
+    @FXML
+    private TextField purchase_total_amount;
+
+    @FXML
+    private TextField purchase_date;
+
+    @FXML
+    private Button purchase_purhcase_btn;
+
+    double totalAmount;
+    int totalCustomers;
 
     //Database Credentials
     String url = "jdbc:mysql://localhost:3306/test";
     @FXML
     String db_username = "root";
     @FXML
-    String password = "nicetrylol";
+    String password = "ezioauditore@77";
     private Connection connection;
     private PreparedStatement prepare;
     private ResultSet result;
@@ -111,6 +137,8 @@ public class DashboardController {
     private List<Drug> drugsList;
     public DashboardController() {
         drugsList = new ArrayList<>();
+        totalAmount = 0;
+        totalCustomers = 0;
     }
 
     //Method to connect to the database
@@ -258,12 +286,127 @@ public class DashboardController {
         }
     }
 
+    //Method to display available medicine
+    public void displayMedicineCount() throws SQLException {
+        total_income.setText(String.valueOf(totalAmount));
+        customer_count.setText(String.valueOf(totalCustomers));
+        connectToDatabase(url, db_username, password);
+
+        try {
+            String sql = "SELECT COUNT(*) FROM drugs";
+            prepare = connection.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if(result.next()) {
+                int rowCount = result.getInt(1);
+                medicine_count.setText(String.valueOf(rowCount));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connection.close();
+        }
+
+    }
+
+    //Method to add purhcases to system
+    public void purchaseEvent(ActionEvent event) {
+        if(event.getSource() == purchase_purhcase_btn) {
+            String drugName = purchase_medicine_name.getText();
+            int quantity = Integer.parseInt(purchase_quantity.getText());
+            double total_amount = Double.parseDouble(purchase_total_amount.getText());
+            String date = purchase_date.getText();
+
+            Purchase newPurchase = new Purchase(drugName, quantity, total_amount, date);
+            totalAmount += total_amount;
+            totalCustomers++;
+
+            connectToDatabase(url, db_username, password);
+
+            try {
+                String query = "INSERT INTO purchases (purchase_id, drug_name, quantity, total_amount, purchase_date) VALUES (?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, newPurchase.getPurchase_id());
+                preparedStatement.setString(2, drugName);
+                preparedStatement.setInt(3, quantity);
+                preparedStatement.setDouble(4, total_amount);
+                preparedStatement.setString(5, date);
+
+                preparedStatement.executeUpdate();
+                System.out.println("Purchase recorded successfully.");
+                showAlert("Success", "Purchase recorded successfully.", Alert.AlertType.INFORMATION);
+            } catch (SQLException e) {
+                System.out.println("Error while inserting the purchase into the database: " + e.getMessage());
+                showAlert("Error", "Error while adding purchase.", Alert.AlertType.ERROR);
+            }
+
+            //clear text fields
+            purchase_medicine_name.clear();
+            purchase_total_amount.clear();
+            purchase_quantity.clear();
+            purchase_date.clear();
+        }
+    }
+
+    //Display purchases in the purchases table
+    public ObservableList<PurchaseTable> addPurchasesListData() {
+        ObservableList<PurchaseTable> purchasesList = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM purchases";
+
+        try {
+            connectToDatabase(url, db_username, password);
+            prepare = connection.prepareStatement(sql);
+            result = prepare.executeQuery();
+            PurchaseTable purchase;
+
+            while (result.next()) {
+                purchase = new PurchaseTable(
+                        result.getInt("purchase_id"),
+                        result.getString("drug_name"),
+                        result.getInt("quantity"),
+                        result.getDouble("total_amount"),
+                        result.getString("purchase_date")
+                );
+                purchasesList.add(purchase);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Make sure to close the connection, statement, and result set to release resources
+            try {
+                if (result != null) result.close();
+                if (prepare != null) prepare.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return purchasesList;
+    }
+
+    private ObservableList<PurchaseTable> addPurchaseList;
+    public void addPurchasesShowListData() {
+        addPurchaseList = addPurchasesListData();
+
+        purchaseID_col.setCellValueFactory(new PropertyValueFactory<>("purchase_id"));
+        medicineName_col.setCellValueFactory(new PropertyValueFactory<>("drug_name"));
+        quantity_col.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        totalAmount_col.setCellValueFactory(new PropertyValueFactory<>("total_amount"));
+        date_col.setCellValueFactory(new PropertyValueFactory<>("purchase_date"));
+
+        purchase_tableview.setItems(addPurchaseList);
+    }
+
 
     //Methods for swapping views
-    public void viewDashboard(ActionEvent event) {
+    public void viewDashboard(ActionEvent event) throws SQLException {
         if(event.getSource() == dashboard_btn) {
             dashboard_form.setVisible(true);
             add_medince_anchor.setVisible(false);
+            purchase_medince_view.setVisible(false);
+            displayMedicineCount();
+            addPurchasesShowListData();
         }
     }
 
@@ -271,7 +414,16 @@ public class DashboardController {
         if(event.getSource() == addMed_btn) {
             dashboard_form.setVisible(false);
             add_medince_anchor.setVisible(true);
+            purchase_medince_view.setVisible(false);
             addDrugsShowListData();
+        }
+    }
+
+    public void viewPurchaseMedicine(ActionEvent event) {
+        if(event.getSource() == purchase_btn) {
+            dashboard_form.setVisible(false);
+            add_medince_anchor.setVisible(false);
+            purchase_medince_view.setVisible(true);
         }
     }
 

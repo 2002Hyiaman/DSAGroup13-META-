@@ -129,7 +129,7 @@ public class DashboardController {
     @FXML
     String db_username = "root";
     @FXML
-    String password = "ezioauditore@77";
+    String password = "nicetrylol";
     private Connection connection;
     private PreparedStatement prepare;
     private ResultSet result;
